@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="home" template="/WEB-INF/templates/template.jsp">
+		<put-attribute name="body" value="/WEB-INF/pages/home.jsp"></put-attribute>
+		<put-attribute name="header" value="/WEB-INF/templates/header.jsp"></put-attribute>
+		<put-attribute name="menu" value="/WEB-INF/templates/menu.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/templates/footer.jsp"></put-attribute>
+		<put-attribute name="title" value="Home"></put-attribute>
+	</definition>
+
+	<definition name="categories/page" extends="home">
+		<put-attribute name="body" value="/WEB-INF/pages/categories.jsp"></put-attribute>
+		<put-attribute name="title" value="Categories"></put-attribute>
+	</definition>
+
+	<definition name="categories/form" extends="home">
+		<put-attribute name="body" value="/WEB-INF/pages/categoryForm.jsp"></put-attribute>
+		<put-attribute name="title" value="Category form"></put-attribute>
+	</definition>
+
+	<definition name="customers/form" extends="home">
+		<put-attribute name="body" value="/WEB-INF/pages/customerForm.jsp"></put-attribute>
+		<put-attribute name="title" value="Customer form"></put-attribute>
+	</definition>
+
+	<definition name="customers/products" extends="home">
+		<put-attribute name="body"
+			value="/WEB-INF/pages/customerProducts.jsp"></put-attribute>
+			<put-attribute name="title" value="Customer products"></put-attribute>
+	</definition>
+
+	<definition name="customers/page" extends="home">
+		<put-attribute name="body" value="/WEB-INF/pages/customers.jsp"></put-attribute>
+		<put-attribute name="title" value="Customers"></put-attribute>
+	</definition>
+
+	<definition name="exceptions/page" extends="home">
+		<put-attribute name="body" value="/WEB-INF/pages/exceptions.jsp"></put-attribute>
+		<put-attribute name="title" value="Exception"></put-attribute>
+	</definition>
+
+	<definition name="login/form" extends="home">
+		<put-attribute name="body" value="/WEB-INF/pages/loginForm.jsp"></put-attribute>
+		<put-attribute name="title" value="Login form"></put-attribute>
+	</definition>
+
+	<definition name="products/details" extends="home">
+		<put-attribute name="body" value="/WEB-INF/pages/productDetails.jsp"></put-attribute>
+		<put-attribute name="title" value="Product details"></put-attribute>
+	</definition>
+
+	<definition name="products/form" extends="home">
+		<put-attribute name="body" value="/WEB-INF/pages/productForm.jsp"></put-attribute>
+		<put-attribute name="title" value="Product form"></put-attribute>
+	</definition>
+
+	<definition name="products/page" extends="home">
+		<put-attribute name="body" value="/WEB-INF/pages/products.jsp"></put-attribute>
+		<put-attribute name="title" value="Products"></put-attribute>
+	</definition>
+
+	<definition name="users/form" extends="home">
+		<put-attribute name="body" value="/WEB-INF/pages/userForm.jsp"></put-attribute>
+		<put-attribute name="title" value="User form"></put-attribute>
+	</definition>
+
+	<definition name="users/page" extends="home">
+		<put-attribute name="body" value="/WEB-INF/pages/users.jsp"></put-attribute>
+		<put-attribute name="title" value="Users"></put-attribute>
+	</definition>
+
+</tiles-definitions>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<security:authentication-manager id="authenticationManager">
+		<security:authentication-provider
+			user-service-ref="userService">
+			<security:password-encoder ref="passwordEncoder" />
+		</security:authentication-provider>
+	</security:authentication-manager>
+	
+	<security:http pattern="/resources/**" security="none"></security:http>
+
+	<security:http use-expressions="true">
+		<security:intercept-url pattern="/" access="permitAll" />
+		<security:intercept-url pattern="/customers/addProduct"
+			access="permitAll" />
+		<security:intercept-url pattern="/customers/removeProduct"
+			access="permitAll" />
+		<security:intercept-url pattern="/customers/products"
+			access="permitAll" />	
+		<security:intercept-url pattern="/customers/form"
+			access="permitAll" />
+		<security:intercept-url pattern="/customers/save"
+			method="POST" access="permitAll" />
+		<security:intercept-url pattern="/products/details"
+			access="permitAll" />
+		<security:intercept-url pattern="/login"
+			access="!isAuthenticated()" />
+		<security:intercept-url pattern="/users/edit"
+			access="isAuthenticated()" />
+		<security:intercept-url pattern="/users/save"
+			access="isAuthenticated()" method="POST" />
+		<security:intercept-url pattern="/users/**"
+			access="hasAuthority('ADMIN')" />
+		<security:intercept-url pattern="/**"
+			access="isAuthenticated()" /> 
+
+		<security:form-login login-page="/login"
+			login-processing-url="/login" authentication-failure-url="/login?error=true"
+			default-target-url="/" username-parameter="username"
+			password-parameter="password" />
+
+		<security:logout logout-url="/logout"
+			logout-success-url="/" invalidate-session="true" delete-cookies="JSESSIONID" />
+
+		<security:access-denied-handler
+			error-page="/denied" />
+
+	</security:http>
+
+</beans>
