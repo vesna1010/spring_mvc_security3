@@ -1,6 +1,5 @@
 package test.controller;
 
-import javax.servlet.Filter;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -18,9 +17,7 @@ public abstract class BaseControllerTest {
 
 	@Autowired
 	protected WebApplicationContext context;
-	@Autowired
-	protected Filter springSecurityFilterChain;
 	protected MockMvc mockMvc;
 	
-
 }
+
