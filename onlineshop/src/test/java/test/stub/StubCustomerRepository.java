@@ -71,10 +71,10 @@ public class StubCustomerRepository implements CustomerRepository {
 
 		@Override
 		public int compare(Customer c1, Customer c2) {
-			Comparator<Customer> comparator = Comparator.comparing(customer -> customer.getDate());
+			Comparator<Customer> comparator = Comparator.comparing(Customer::getDate);
 
 			comparator = comparator.reversed();
-			comparator = comparator.thenComparing(customer -> customer.getId());
+			comparator = comparator.thenComparing(Customer::getId);
 
 			return comparator.compare(c1, c2);
 		}
