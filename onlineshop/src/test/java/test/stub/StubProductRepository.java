@@ -52,7 +52,7 @@ public class StubProductRepository implements ProductRepository {
 
 	@Override
 	public Optional<Product> findById(String id) {
-		return (map.containsKey(id)) ? Optional.of(map.get(id)) : Optional.empty();
+		return Optional.ofNullable(map.get(id));
 	}
 
 	@Override
