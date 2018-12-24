@@ -23,7 +23,7 @@ public class StubCategoryRepository implements CategoryRepository {
 
 	@Override
 	public Optional<Category> findById(Long id) {
-		return (map.containsKey(id)) ? Optional.of(map.get(id)) : Optional.empty();
+		return Optional.ofNullable(map.get(id));
 	}
 
 	@Override
@@ -41,7 +41,12 @@ public class StubCategoryRepository implements CategoryRepository {
 	}
 
 	private Long getGeneratedId() {
-		return map.keySet().stream().mapToLong(a -> a).max().orElse(0) + 1;
+		return map
+				.keySet()
+				.stream()
+				.mapToLong(a -> a)
+				.max()
+				.orElse(0) + 1;
 	}
 
 	@Override
