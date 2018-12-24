@@ -25,7 +25,7 @@ public class StubUserRepository implements UserRepository {
 
 	@Override
 	public Optional<User> findByUsername(String username) {
-		return (map.containsKey(username)) ? Optional.of(map.get(username)) : Optional.empty();
+		return Optional.ofNullable(map.get(username));
 	}
 
 	@Override
