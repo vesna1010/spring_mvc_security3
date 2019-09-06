@@ -113,7 +113,7 @@ public class UsersControllerTest extends GlobalControllerTest {
 	public void renderUserFormWithAnonymousUserTest() throws Exception {
 		mockMvc.perform(get("/users/form"))
 		       .andExpect(status().is3xxRedirection())
-	           .andExpect(redirectedUrlPattern("**/login"));
+	               .andExpect(redirectedUrlPattern("**/login"));
 	}
 	
 	@Test
