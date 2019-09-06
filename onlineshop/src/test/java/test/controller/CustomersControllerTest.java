@@ -75,7 +75,7 @@ public class CustomersControllerTest extends GlobalControllerTest {
 				.param("size", "10")
 				)
 		       .andExpect(status().is3xxRedirection())
-               .andExpect(redirectedUrlPattern("**/login"));
+                       .andExpect(redirectedUrlPattern("**/login"));
 		       
 		verify(customerService, times(0)).findCustomersByPage(1, 10);
 		verify(customerService, times(0)).countAllCustomers();
@@ -117,7 +117,7 @@ public class CustomersControllerTest extends GlobalControllerTest {
 				.param("productId", "1234567890121")
 				)
 		       .andExpect(status().is3xxRedirection())
-               .andExpect(redirectedUrlPattern("**/login"));
+                       .andExpect(redirectedUrlPattern("**/login"));
 		       
 		verify(productService, times(0)).findProductById("1234567890121");
 		verify(customerService, times(0)).findCustomersByProductAndPage(product, 1, 10);
@@ -186,8 +186,8 @@ public class CustomersControllerTest extends GlobalControllerTest {
 					request.setCookies((new Cookie[] { new Cookie("PRODUCTID1234567890121", "2") }));
 					return request;
 		        }))
-	           .andExpect(status().isOk())
-	           .andExpect(model().attribute("categories", hasSize(2)))
+	               .andExpect(status().isOk())
+	               .andExpect(model().attribute("categories", hasSize(2)))
 		       .andExpect(model().attribute("customer", hasProperty("products", hasEntry(product, 2))))
 		       .andExpect(view().name("customers/products"));
 		
@@ -206,8 +206,8 @@ public class CustomersControllerTest extends GlobalControllerTest {
 					request.setCookies((new Cookie[] { new Cookie("PRODUCTID1234567890121", "2") }));
 					return request;
 		        }))
-	           .andExpect(status().isOk())
-	           .andExpect(model().attribute("categories", hasSize(2)))
+	               .andExpect(status().isOk())
+	               .andExpect(model().attribute("categories", hasSize(2)))
 		       .andExpect(model().attribute("customer", hasProperty("products", hasEntry(product, 2))))
 		       .andExpect(view().name("customers/form"));
 		
@@ -239,7 +239,7 @@ public class CustomersControllerTest extends GlobalControllerTest {
 				.param("products[1234567890121]", "2"))
 		       .andExpect(model().attribute("message", is("These products are ordered!")))
 		       .andExpect(model().attribute("categories", hasSize(2)))
-	           .andExpect(view().name("customers/products"));
+	               .andExpect(view().name("customers/products"));
 		
 		verify(productService, times(1)).findProductById("1234567890121");
 		verify(customerService, times(1)).saveCustomer(customer);
@@ -271,7 +271,7 @@ public class CustomersControllerTest extends GlobalControllerTest {
 				.param("products[1234567890121]", "2"))
 		       .andExpect(model().attribute("message", is("We do not have enough stock of the product: Product A!")))
 		       .andExpect(model().attribute("categories", hasSize(2)))
-	           .andExpect(view().name("customers/products"));
+	               .andExpect(view().name("customers/products"));
 		
 		verify(productService, times(1)).findProductById("1234567890121");
 		verify(customerService, times(1)).saveCustomer(customer);
