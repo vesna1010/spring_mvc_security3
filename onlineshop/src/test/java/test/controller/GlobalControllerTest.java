@@ -2,7 +2,6 @@ package test.controller;
 
 import static org.mockito.Mockito.when;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
-
 import java.util.Arrays;
 import org.junit.Before;
 import org.mockito.InjectMocks;
@@ -36,7 +35,10 @@ public abstract class GlobalControllerTest extends BaseControllerTest {
 	@Before
 	public void setup() {
 		MockitoAnnotations.initMocks(this);
-		this.mockMvc = MockMvcBuilders.webAppContextSetup(context).apply(springSecurity()).build();
+		this.mockMvc = MockMvcBuilders
+			.webAppContextSetup(context)
+			.apply(springSecurity())
+			.build();
 
 		when(categoryService.findAllCategories()).thenReturn(Arrays.asList(category1, category2));
 	}
