@@ -30,7 +30,7 @@ public class LoginControllerTest extends GlobalControllerTest {
 	public void renderLoginFormWithAuthenticatedUserTest() throws Exception {
 		mockMvc.perform(get("/login"))
 		       .andExpect(status().isForbidden())
-	           .andExpect(forwardedUrl("/denied"));
+	               .andExpect(forwardedUrl("/denied"));
 	}
 	
 	@Test
