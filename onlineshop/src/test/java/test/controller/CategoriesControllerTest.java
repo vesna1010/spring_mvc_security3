@@ -46,7 +46,7 @@ public class CategoriesControllerTest extends GlobalControllerTest {
 		mockMvc.perform(get("/categories"))
 		       .andExpect(status().isOk())
 		       .andExpect(model().attribute("categories", hasSize(2)))
-	           .andExpect(view().name("categories/page"));
+	               .andExpect(view().name("categories/page"));
 		
 		verify(categoryService, times(1)).findAllCategories();
 	}
@@ -56,7 +56,7 @@ public class CategoriesControllerTest extends GlobalControllerTest {
 	public void renderCategoryFormWithAnonymousUserTest() throws Exception {
 		mockMvc.perform(get("/categories/form"))
 		       .andExpect(status().is3xxRedirection())
-               .andExpect(redirectedUrlPattern("**/login"));
+                       .andExpect(redirectedUrlPattern("**/login"));
 	}
 	
 	@Test
@@ -65,8 +65,8 @@ public class CategoriesControllerTest extends GlobalControllerTest {
 		mockMvc.perform(get("/categories/form"))
 		       .andExpect(status().isOk())
 		       .andExpect(model().attribute("categories", hasSize(2)))
-			   .andExpect(model().attribute("category", is(new Category())))
-			   .andExpect(view().name("categories/form"));
+		       .andExpect(model().attribute("category", is(new Category())))
+		       .andExpect(view().name("categories/form"));
 		
 		verify(categoryService, times(1)).findAllCategories();
 	}
@@ -123,7 +123,7 @@ public class CategoriesControllerTest extends GlobalControllerTest {
 				.param("categoryId", "1")
 				)
 		       .andExpect(status().is3xxRedirection())
-               .andExpect(redirectedUrlPattern("**/login"));
+                       .andExpect(redirectedUrlPattern("**/login"));
 
 		verify(categoryService, times(0)).findCategoryById(1L);
 	}
@@ -139,8 +139,8 @@ public class CategoriesControllerTest extends GlobalControllerTest {
 				)
 		       .andExpect(status().isOk())
 		       .andExpect(model().attribute("categories", hasSize(2)))
-			   .andExpect(model().attribute("category", hasProperty("name", is("Category A"))))
-			   .andExpect(view().name("categories/form"));
+		       .andExpect(model().attribute("category", hasProperty("name", is("Category A"))))
+		       .andExpect(view().name("categories/form"));
 
 		verify(categoryService, times(1)).findCategoryById(1L);
 		verify(categoryService, times(1)).findAllCategories();
@@ -157,8 +157,8 @@ public class CategoriesControllerTest extends GlobalControllerTest {
 				.param("categoryId", "1")
 				)
 		       .andExpect(status().isOk())
-			   .andExpect(model().attribute("message", is("Not Found Category By Id 1")))
-			   .andExpect(view().name("exceptions/page"));
+		       .andExpect(model().attribute("message", is("Not Found Category By Id 1")))
+		       .andExpect(view().name("exceptions/page"));
 
 		verify(categoryService, times(1)).findCategoryById(1L);
 	}
@@ -174,7 +174,7 @@ public class CategoriesControllerTest extends GlobalControllerTest {
 				.param("categoryId", "1")
 				)
 		       .andExpect(status().is3xxRedirection())
-               .andExpect(redirectedUrlPattern("**/login"));
+                       .andExpect(redirectedUrlPattern("**/login"));
 		
 		verify(categoryService, times(0)).findCategoryById(1L);
 		verify(categoryService, times(0)).deleteCategory(category1);
@@ -226,7 +226,7 @@ public class CategoriesControllerTest extends GlobalControllerTest {
 				.param("categoryId", "1")
 				)
 		       .andExpect(model().attribute("message", is("Can Not Delete Category By Id 1")))
-	           .andExpect(view().name("exceptions/page"));
+	               .andExpect(view().name("exceptions/page"));
 		
 		verify(categoryService, times(1)).findCategoryById(1L);
 		verify(categoryService, times(1)).deleteCategory(category1);
