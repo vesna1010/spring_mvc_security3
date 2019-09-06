@@ -60,7 +60,7 @@ public class ProductsControllerTest extends GlobalControllerTest {
 				.param("size", "10")
 				)
 		       .andExpect(status().is3xxRedirection())
-	           .andExpect(redirectedUrlPattern("**/login"));
+	               .andExpect(redirectedUrlPattern("**/login"));
 		
 		verify(productService, times(0)).findProductsByPage(1, 10);
 		verify(productService, times(0)).countAllProducts();
@@ -102,7 +102,7 @@ public class ProductsControllerTest extends GlobalControllerTest {
 				.param("size", "10")
 				)
 		       .andExpect(status().is3xxRedirection())
-               .andExpect(redirectedUrlPattern("**/login"));
+                       .andExpect(redirectedUrlPattern("**/login"));
 		
 		verify(categoryService, times(0)).findCategoryById(1L);
 		verify(productService, times(0)).findProductsByCategoryAndPage(category1, 1, 10);
@@ -139,7 +139,7 @@ public class ProductsControllerTest extends GlobalControllerTest {
 	public void renderEmptyFormWithAnonymousUserTest() throws Exception {
 		mockMvc.perform(get("/products/form"))
 		       .andExpect(status().is3xxRedirection())
-               .andExpect(redirectedUrlPattern("**/login"));
+                       .andExpect(redirectedUrlPattern("**/login"));
 	}
 	
 	@Test
@@ -175,8 +175,8 @@ public class ProductsControllerTest extends GlobalControllerTest {
 				.with(csrf())
 				)
 		       .andExpect(model().hasNoErrors())
-	           .andExpect(status().is3xxRedirection())
-	           .andExpect(redirectedUrl("/products/form"));
+	               .andExpect(status().is3xxRedirection())
+	               .andExpect(redirectedUrl("/products/form"));
 		
 		verify(categoryService, times(1)).findCategoryById(1L);
 		verify(productService, times(1)).saveProduct(product);
@@ -203,10 +203,10 @@ public class ProductsControllerTest extends GlobalControllerTest {
 				.with(csrf())
 				)
 		       .andExpect(status().isOk())
-	           .andExpect(model().attributeHasFieldErrors("product", "name"))
-	           .andExpect(model().attribute("product", hasProperty("name", is("Product ??"))))
-	           .andExpect(model().attribute("categories", hasSize(2)))
-	           .andExpect(view().name("products/form"));
+	               .andExpect(model().attributeHasFieldErrors("product", "name"))
+	               .andExpect(model().attribute("product", hasProperty("name", is("Product ??"))))
+	               .andExpect(model().attribute("categories", hasSize(2)))
+	               .andExpect(view().name("products/form"));
 		
 		verify(categoryService, times(1)).findCategoryById(1L);
 		verify(productService, times(0)).saveProduct(product);
@@ -223,7 +223,7 @@ public class ProductsControllerTest extends GlobalControllerTest {
 				.param("productId", "1234567890121")
 				)
 		       .andExpect(status().is3xxRedirection())
-               .andExpect(redirectedUrlPattern("**/login"));
+                       .andExpect(redirectedUrlPattern("**/login"));
 		
 		verify(productService, times(0)).findProductById("1234567890121");
 	}
@@ -239,8 +239,8 @@ public class ProductsControllerTest extends GlobalControllerTest {
 				)
 		       .andExpect(status().isOk())
 		       .andExpect(model().attribute("product", is(product1)))
-	           .andExpect(model().attribute("categories", hasSize(2)))
-	           .andExpect(view().name("products/form"));
+	               .andExpect(model().attribute("categories", hasSize(2)))
+	               .andExpect(view().name("products/form"));
 		
 		verify(productService, times(1)).findProductById("1234567890121");
 		verify(categoryService, times(1)).findAllCategories();
@@ -274,8 +274,8 @@ public class ProductsControllerTest extends GlobalControllerTest {
 				)
 		       .andExpect(status().isOk())
 		       .andExpect(model().attribute("product", is(product1)))
-	           .andExpect(model().attribute("categories", hasSize(2)))
-	           .andExpect(view().name("products/details"));
+	               .andExpect(model().attribute("categories", hasSize(2)))
+	               .andExpect(view().name("products/details"));
 		
 		verify(productService, times(1)).findProductById("1234567890121");
 		verify(categoryService, times(1)).findAllCategories();
@@ -309,7 +309,7 @@ public class ProductsControllerTest extends GlobalControllerTest {
 				.param("productId", "1234567890121")
 				)
 		       .andExpect(status().is3xxRedirection())
-               .andExpect(redirectedUrlPattern("**/login"));
+                       .andExpect(redirectedUrlPattern("**/login"));
 		
 		verify(productService, times(0)).findProductById("1234567890121");
 		verify(productService, times(0)).deleteProduct(product1);
@@ -325,8 +325,8 @@ public class ProductsControllerTest extends GlobalControllerTest {
 				get("/products/delete")
 				.param("productId", "1234567890121")
 				)
-	       	   .andExpect(status().is3xxRedirection())
-	           .andExpect(redirectedUrl("/products"));
+	       	       .andExpect(status().is3xxRedirection())
+	               .andExpect(redirectedUrl("/products"));
 		
 		verify(productService, times(1)).findProductById("1234567890121");
 		verify(productService, times(1)).deleteProduct(product1);
@@ -343,8 +343,8 @@ public class ProductsControllerTest extends GlobalControllerTest {
 				.param("productId", "1234567890123")
 				)
 		       .andExpect(status().isOk())
-	           .andExpect(model().attribute("message", is("Not Found Product By Id 1234567890121")))
-	           .andExpect(view().name("exceptions/page"));
+	               .andExpect(model().attribute("message", is("Not Found Product By Id 1234567890121")))
+	               .andExpect(view().name("exceptions/page"));
 		
 		verify(productService, times(1)).findProductById("1234567890123");
 	}
@@ -361,8 +361,8 @@ public class ProductsControllerTest extends GlobalControllerTest {
 				.param("productId", "1234567890121")
 				)
 		       .andExpect(status().isOk())
-	           .andExpect(model().attribute("message", is("Can Not Delete Product By Id 1234567890121")))
-	           .andExpect(view().name("exceptions/page"));
+	               .andExpect(model().attribute("message", is("Can Not Delete Product By Id 1234567890121")))
+	               .andExpect(view().name("exceptions/page"));
 		
 		verify(productService, times(1)).findProductById("1234567890121");
 		verify(productService, times(1)).deleteProduct(product1);
