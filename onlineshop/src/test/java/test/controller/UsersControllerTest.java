@@ -121,7 +121,7 @@ public class UsersControllerTest extends GlobalControllerTest {
 	public void renderUserFormWithAuthorityUserTest() throws Exception {
 		mockMvc.perform(get("/users/form"))
 		       .andExpect(status().isForbidden())
-	           .andExpect(forwardedUrl("/denied"));
+	               .andExpect(forwardedUrl("/denied"));
 	}
 	
 	@Test
@@ -130,8 +130,8 @@ public class UsersControllerTest extends GlobalControllerTest {
 		mockMvc.perform(get("/users/form"))
 		       .andExpect(status().isOk())
 		       .andExpect(model().attribute("categories", hasSize(2)))
-			   .andExpect(model().attribute("user", is(new User())))
-			   .andExpect(view().name("users/form"));
+		       .andExpect(model().attribute("user", is(new User())))
+		       .andExpect(view().name("users/form"));
 		
 		verify(categoryService, times(1)).findAllCategories();
 	}
@@ -197,7 +197,7 @@ public class UsersControllerTest extends GlobalControllerTest {
 	public void renderFormWithUserWithAnonymousTest() throws Exception {
 		mockMvc.perform(get("/users/edit"))
 		       .andExpect(status().is3xxRedirection())
-               .andExpect(redirectedUrlPattern("**/login"));
+                       .andExpect(redirectedUrlPattern("**/login"));
 	}
 	
 	@Test
@@ -227,7 +227,7 @@ public class UsersControllerTest extends GlobalControllerTest {
 				.param("username", "UsernameA")
 				)
 		       .andExpect(status().is3xxRedirection())
-               .andExpect(redirectedUrlPattern("**/login"));
+                       .andExpect(redirectedUrlPattern("**/login"));
 		
 		verify(userService, times(0)).findUserByUsername("UsernameA");
 		verify(userService, times(0)).deleteUser(user1);
@@ -243,8 +243,8 @@ public class UsersControllerTest extends GlobalControllerTest {
 				get("/users/delete")
 				.param("username", "UsernameA")
 				)
-	    	   .andExpect(status().isForbidden())
-               .andExpect(forwardedUrl("/denied"));
+	    	       .andExpect(status().isForbidden())
+                       .andExpect(forwardedUrl("/denied"));
 		
 		verify(userService, times(0)).findUserByUsername("UsernameA");
 		verify(userService, times(0)).deleteUser(user1);
@@ -278,8 +278,8 @@ public class UsersControllerTest extends GlobalControllerTest {
 				.param("username", "UsernameA")
 				)
 		       .andExpect(status().isOk())
-	           .andExpect(model().attribute("message", is("Not Found User By Username UsernameA")))
-	           .andExpect(view().name("exceptions/page"));
+	               .andExpect(model().attribute("message", is("Not Found User By Username UsernameA")))
+	               .andExpect(view().name("exceptions/page"));
 		
 		verify(userService, times(1)).findUserByUsername("UsernameA");
 	}
@@ -295,7 +295,7 @@ public class UsersControllerTest extends GlobalControllerTest {
 				.param("username", "UsernameA")
 				)
 		       .andExpect(status().is3xxRedirection())
-               .andExpect(redirectedUrlPattern("**/login"));
+                       .andExpect(redirectedUrlPattern("**/login"));
 		
 		verify(userService, times(0)).findUserByUsername("UsernameA");
 		verify(userService, times(0)).disableUser(user1);
@@ -312,7 +312,7 @@ public class UsersControllerTest extends GlobalControllerTest {
 				.param("username", "UsernameA")
 				)
 		       .andExpect(status().isForbidden())
-               .andExpect(forwardedUrl("/denied"));
+                       .andExpect(forwardedUrl("/denied"));
 		
 		verify(userService, times(0)).findUserByUsername("UsernameA");
 		verify(userService, times(0)).disableUser(user1);
@@ -346,8 +346,8 @@ public class UsersControllerTest extends GlobalControllerTest {
 				.param("username", "UsernameA")
 				)
 		       .andExpect(status().isOk())
-	           .andExpect(model().attribute("message", is("Not Found User By Username UsernameA")))
-	           .andExpect(view().name("exceptions/page"));
+	               .andExpect(model().attribute("message", is("Not Found User By Username UsernameA")))
+	               .andExpect(view().name("exceptions/page"));
 		
 		verify(userService, times(1)).findUserByUsername("UsernameA");
 	}
